@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(DisplayMaze))]
 public class MazeConstructor : MonoBehaviour
 {
     public bool showDebug;
     private MazeDataGenerator mazeDataGenerator;
+    private DisplayMaze displayMaze;
+
 
     
     public int[,] data
@@ -23,6 +25,7 @@ public class MazeConstructor : MonoBehaviour
         };
 
         mazeDataGenerator = new MazeDataGenerator();
+        displayMaze = GetComponent<DisplayMaze>();
     }
     void Start()
     {
@@ -37,6 +40,8 @@ public class MazeConstructor : MonoBehaviour
         }
 
         data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
+        displayMaze.displayMaze(data);
+
     }
 
     private void OnGUI()
@@ -58,11 +63,11 @@ public class MazeConstructor : MonoBehaviour
             {
                 if (maze[i,j] == 0)
                 {
-                    msg += "....";
+                    msg += "0";
                 }
                 else
                 {
-                    msg += "==";
+                    msg += "1";
                 }
                 
             }

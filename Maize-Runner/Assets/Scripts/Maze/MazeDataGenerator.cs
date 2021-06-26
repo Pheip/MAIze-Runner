@@ -14,7 +14,7 @@ public class MazeDataGenerator
 
     public int[,] FromDimensions(int sizeRows, int sizeCols)
     {
-        int[,] maze = new int[sizeRows, sizeCols];
+        int[,] maze = new int[sizeCols, sizeRows];
 
         int rMax = maze.GetUpperBound(0);
         int cMax = maze.GetUpperBound(1);
