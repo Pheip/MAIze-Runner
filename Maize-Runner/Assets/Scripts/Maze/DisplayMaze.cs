@@ -10,7 +10,8 @@ public class DisplayMaze :MonoBehaviour
     public GameObject intersection;
     public GameObject tWall;
     public GameObject endPoint;
-
+    public GameObject exit;
+    public GameObject wallLamp;
     private int rMax;
     private int cMax;
     private int[,] maze;
@@ -46,6 +47,10 @@ public class DisplayMaze :MonoBehaviour
 
     private void createWalls(int x, int z)
     {
+        if(maze[0, z] == 0)
+        {
+            Instantiate(exit, new Vector3(0, 0, z), Quaternion.Euler(0, 90, 0));
+        }
         if (maze[x,z] == 1)
         {
             if (!checkOuterWalls(x, z))
@@ -290,10 +295,12 @@ public class DisplayMaze :MonoBehaviour
     }
     private void generateOuterWalls(int x, int z, bool rotate)
     {
+     
         //Corner bottom left
         if (!rotate)
         {
-            Instantiate(wall, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+           Instantiate(wall, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+             
         }
         else
         {
