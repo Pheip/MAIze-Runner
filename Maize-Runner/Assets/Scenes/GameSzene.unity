@@ -437,3 +437,5 @@ MonoBehaviour:
   intersection: {fileID: 5495961213640625528, guid: a728b5d5a30a01d46b867b478b531f16, type: 3}
   tWall: {fileID: 6744027569320412502, guid: dc818269dfb43fa4db54ce00951119ce, type: 3}
   endPoint: {fileID: 5296640518897159756, guid: 44b22585856c4554991c825eb9025ff9, type: 3}
+  exit: {fileID: 4463566038210007903, guid: 49a5f24a081cbbc44bd23d76c2869723, type: 3}
+  wallLamp: {fileID: 2089684518873972768, guid: 177cc8d17c4c8f24f86c33d026176a86, type: 3}
