@@ -12,6 +12,7 @@ public class DisplayMaze :MonoBehaviour
     public GameObject endPoint;
     public GameObject exit;
     public GameObject wallLamp;
+    public GameObject gameFigure;
     private int rMax;
     private int cMax;
     private int[,] maze;
@@ -37,6 +38,7 @@ public class DisplayMaze :MonoBehaviour
             }
             log += "\n";
         }
+        placeGameFigure();
         Debug.Log(log);
     }
 
@@ -307,5 +309,20 @@ public class DisplayMaze :MonoBehaviour
             Instantiate(wall, new Vector3(x, 0, z), Quaternion.identity);
         }
         
+    }
+
+    private void placeGameFigure()
+    {
+        int x = 0;
+        int y = 0;
+        do
+        {
+             x = Random.Range(cMax - 5, cMax - 1);
+             y = Random.Range(0, rMax - 1);
+        }while(maze[x,y] == 1) ;
+        Debug.Log("Player instantiate at: " + x + " " + y + " " + maze[x, y]);
+
+        Instantiate(gameFigure, new Vector3(x, 0.5f, y), Quaternion.identity);
+
     }
 }
