@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public int columnSize;
     void Start()
     {
+
         mazeConstructor = GetComponent<MazeConstructor>();
         mazeConstructor.GenerateNewMaze(rowSize, columnSize);
     }
