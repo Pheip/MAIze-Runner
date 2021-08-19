@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6643241405976940962}
+  - component: {fileID: -4402170202974131367}
+  - component: {fileID: 8007420674229892923}
   m_Layer: 0
   m_Name: Intersection
   m_TagString: Untagged
@@ -33,6 +35,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4402170202974131367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495961213640625528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffaf4aeda974aa4bbefad03b79b55f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8007420674229892923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495961213640625528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2701302426210756389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6643241405976940962}
     m_Modifications:
+    - target: {fileID: 3644886297036114027, guid: 3ad7a1cffb2556547a8b7e60fd320431, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4733772755456769034, guid: 3ad7a1cffb2556547a8b7e60fd320431, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -17,6 +17,7 @@ public class MazeConstructor : MonoBehaviour
 
     private void Awake()
     {
+
         data = new int[,]
         {
             {1,1,1 },

@@ -6,12 +6,32 @@ using Unity.MLAgents.Sensors;
 
 public class EscapeMazeAgent : Agent
 {
-    public float moveSpeed = 1f;
+    private float moveSpeed = 4f;
+    bool check = true;
+    Vector3 Player = Vector3.zero;
+    Vector3 OldPosition = Vector3.zero;
+
     [SerializeField] private Transform targetTransform;
 
     public override void OnEpisodeBegin()
     {
-        //transform.localPosition = Vector3.zero;
+        
+        if (check)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            Debug.Log(go.transform.position);
+            Player = go.transform.position;
+            transform.localPosition = Player;
+            OldPosition = Player;
+            check = false;
+        }
+      
+        if (!check)
+        {
+            transform.localPosition = OldPosition;
+        }
+        
+       
     }
     public override void OnActionReceived(float[] vectorAction)
     {
@@ -36,7 +56,17 @@ public class EscapeMazeAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        SetReward(+1f);
-        EndEpisode();
+        if (other.TryGetComponent<Goal>(out Goal goal))
+        {
+            SetReward(+1f);
+            EndEpisode();
+        }
+
+        if (other.TryGetComponent<Wall>(out Wall wall))
+        {
+            SetReward(-1f);
+            EndEpisode();
+        }
+
     }
 }
