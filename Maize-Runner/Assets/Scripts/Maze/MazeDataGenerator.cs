@@ -42,7 +42,7 @@ public class MazeDataGenerator
             }
         }
 
-        int exit = Random.Range(0, rMax);
+        int exit = Random.Range(1, rMax - 1);
         maze[0, exit] = 0;
 
 

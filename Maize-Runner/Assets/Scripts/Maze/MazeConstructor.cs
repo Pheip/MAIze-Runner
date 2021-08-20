@@ -7,6 +7,8 @@ public class MazeConstructor : MonoBehaviour
     public bool showDebug;
     private MazeDataGenerator mazeDataGenerator;
     private DisplayMaze displayMaze;
+    public int rows;
+    public int columns;
 
 
     
@@ -40,8 +42,21 @@ public class MazeConstructor : MonoBehaviour
             Debug.LogError("Better use odd numbers for maze size");
         }
 
-        data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
-        displayMaze.displayMaze(data);
+        int xOffset = 0;
+        int yOffset = 0;
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
+                displayMaze.displayMaze(data, xOffset, yOffset);
+                yOffset += 20;
+                
+            }
+            yOffset = 0;
+            xOffset += 20;
+        }
+        
 
     }
 
