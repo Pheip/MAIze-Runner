@@ -18,61 +18,60 @@ public class DisplayMaze :MonoBehaviour
     private int[,] maze;
     string log = "";
 
-    public void displayMaze(int[,] maze)
+    public void displayMaze(int[,] maze, int xOffset, int yOffset)
     {
 
         rMax = maze.GetUpperBound(0);
         cMax = maze.GetUpperBound(1);
-        Debug.Log(rMax);
-        Debug.Log(cMax);
+       // Debug.Log(rMax);
+        //Debug.Log(cMax);
         this.maze = maze;
 
         for (int i = rMax; i >= 0; i--)
         {
             for (int j = 0; j <= cMax; j++)
             {
-                createFloor(i, j);
-                createWalls(i, j);
+                createFloor(i, j, xOffset, yOffset);
+                createWalls(i, j, xOffset, yOffset);
 
                 log += maze[i,j]; 
             }
             log += "\n";
         }
-        placeGameFigure();
-        Debug.Log(log);
+        placeGameFigure(xOffset, yOffset);
     }
 
-    private void createFloor(int x, int z)
+    private void createFloor(int x, int z, int xOffset, int yOffset)
     {
-        Instantiate(floor, new Vector3(x, 0, z), Quaternion.identity);
+        Instantiate(floor, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
     }
 
-    private void createWalls(int x, int z)
+    private void createWalls(int x, int z, int xOffset, int yOffset)
     {
         if(maze[0, z] == 0)
         {
-            Instantiate(exit, new Vector3(0, 0, z), Quaternion.Euler(0, 90, 0));
+            Instantiate(exit, new Vector3(0 + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
         }
         if (maze[x,z] == 1)
         {
-            if (!checkOuterWalls(x, z))
+            if (!checkOuterWalls(x, z, xOffset, yOffset))
             {
-                if (!checkIntersection(x, z))
+                if (!checkIntersection(x, z, xOffset, yOffset))
                 {
-                    if (!checkTWall(x, z))
+                    if (!checkTWall(x, z, xOffset, yOffset))
                     {
-                        if (!checkCorner(x, z))
+                        if (!checkCorner(x, z, xOffset, yOffset))
                         {
-                            if (!checkEndPoint(x, z))
+                            if (!checkEndPoint(x, z, xOffset, yOffset))
                             {
                                 // Generate the rest of the walls
                                 if (maze[x + 1, z] == 1 || maze[x - 1, z] == 1)
                                 {
-                                    Instantiate(wall, new Vector3(x, 0, z), Quaternion.identity);
+                                    Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
                                 }
                                 else if (maze[x, z + 1] == 1 || maze[x, z - 1] == 1)
                                 {
-                                    Instantiate(wall, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+                                    Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
                                 }
                             }
                         }
@@ -82,13 +81,13 @@ public class DisplayMaze :MonoBehaviour
         }
     }
 
-    private bool checkEndPoint(int x, int z)
+    private bool checkEndPoint(int x, int z, int xOffset, int yOffset)
     {
         // Right 
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
             return true;
         }
         else
@@ -97,7 +96,7 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 1)
         {
-            Instantiate(endPoint, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
             return true;
         }
         else
@@ -105,7 +104,7 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x, 0, z), Quaternion.Euler(0, 270, 0));
+            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
             return true;
         }
         else
@@ -113,65 +112,66 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x, 0, z), Quaternion.Euler(0, 180, 0));
+            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
             return true;
         }
         return false;
     }
-    private bool checkTopTWall(int x, int z)
+    private bool checkTopTWall(int x, int z ,int xOffset, int yOffset)
     {
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 1 /*&& maze[x, z - 1] == 0*/)
         {
-            Instantiate(tWall, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
             return true;
         }
         return false;
     }
 
-    private bool checkRightTWall(int x, int z)
+    private bool checkRightTWall(int x, int z, int xOffset, int yOffset)
     {
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             /*maze[x - 1, z] == 0 &&*/ maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
             return true;
         }
         return false;
     }
-    private bool checkBottomTWall(int x, int z)
+    private bool checkBottomTWall(int x, int z, int xOffset, int yOffset)
     {
         if (maze[x + 1, z] == 1 && //maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x, 0, z), Quaternion.Euler(0, 180, 0));
+            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
             return true;
         }
         return false;
     }
 
-    private bool checkLeftTWall(int x, int z)
+    private bool checkLeftTWall(int x, int z, int xOffset, int yOffset)
     {
         if (/*maze[x + 1, z] == 0 &&*/ maze[x, z + 1] == 1 &&
              maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x, 0, z), Quaternion.Euler(0, 270, 0));
+            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
             return true;
         }
         return false;
     }
 
-    private bool checkTWall(int x, int z)
+    private bool checkTWall(int x, int z, int xOffset, int yOffset)
     {
-        return (checkTopTWall(x, z) || checkLeftTWall(x, z) || checkRightTWall(x, z) || checkBottomTWall(x, z));
+        return (checkTopTWall(x, z, xOffset, yOffset) || checkLeftTWall(x, z, xOffset, yOffset) ||
+            checkRightTWall(x, z, xOffset, yOffset) || checkBottomTWall(x, z, xOffset, yOffset));
     }
-    private bool checkCorner(int x, int z)
+    private bool checkCorner(int x, int z, int xOffset, int yOffset)
     {
         //Top - Right Corner
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
             return true;
         }
         else
@@ -180,7 +180,7 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 1)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
             return true;
         }
         else
@@ -188,7 +188,7 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 0)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 270, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
             return true;
         }
         else
@@ -196,32 +196,31 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 180, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
             return true;
         }
         return false;
     }
-    private bool checkIntersection(int x, int z)
+    private bool checkIntersection(int x, int z, int xOffset, int yOffset)
     {
         if (maze[x + 1, z] == 1 && maze[x - 1, z] == 1 &&
                   maze[x, z + 1] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(intersection, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(intersection, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
             return true;
         }
         return false;
     }
-    private bool checkOuterWalls(int x, int z)
+    private bool checkOuterWalls(int x, int z, int xOffset, int yOffset)
     {
-        Debug.Log(x + " " + z);
-        if (!checkOuterCorner(x,z))
+        if (!checkOuterCorner(x,z, xOffset, yOffset))
         {
            ;
             if (x == 0)
             {
-                if (!checkRightTWall(x, z))
+                if (!checkRightTWall(x, z, xOffset, yOffset))
                 {
-                    generateOuterWalls(x, z, false);
+                    generateOuterWalls(x, z, false, xOffset, yOffset);
                     return true;
                 }
                 return true;
@@ -230,21 +229,20 @@ public class DisplayMaze :MonoBehaviour
 
             if (x == rMax)
             {
-                if (!checkLeftTWall(x, z))
+                if (!checkLeftTWall(x, z, xOffset, yOffset))
                 {
-                    generateOuterWalls(x, z, false);
+                    generateOuterWalls(x, z, false, xOffset, yOffset);
                     return true;
                 }
-                Debug.Log("kek");
                 return true;
             }
             else
 
             if (z == 0)
             {
-                if (!checkTopTWall(x, z))
+                if (!checkTopTWall(x, z, xOffset, yOffset))
                 {
-                    generateOuterWalls(x, z, true);
+                    generateOuterWalls(x, z, true, xOffset, yOffset);
                     return true;
                 }
                 return true;
@@ -253,65 +251,65 @@ public class DisplayMaze :MonoBehaviour
 
             if (z == cMax)
             {
-                if (!checkBottomTWall(x, z))
+                if (!checkBottomTWall(x, z, xOffset, yOffset))
                 {
-                    generateOuterWalls(x, z, true);
+                    generateOuterWalls(x, z, true, xOffset, yOffset);
                     return true;
                 }
                 return true;
             }
             return false;
         }
-        return checkOuterCorner(x, z);
+        return checkOuterCorner(x, z, xOffset, yOffset);
     }
 
-    private bool checkOuterCorner(int x, int z)
+    private bool checkOuterCorner(int x, int z, int xOffset, int yOffset)
     {
         if (x == 0 && z == 0)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
             return true;
         }
         else
         //Corner top left
         if (x == 0 && z == cMax)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
             return true;
         }
         else
         //Corner top right
         if (x == rMax && z == cMax)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 180, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
             return true;
         }
         else
         //Corner bottom right
         if (x == rMax && z == 0)
         {
-            Instantiate(corner, new Vector3(x, 0, z), Quaternion.Euler(0, 270, 0));
+            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
             return true;
         }
         return false;
     }
-    private void generateOuterWalls(int x, int z, bool rotate)
+    private void generateOuterWalls(int x, int z, bool rotate, int xOffset, int yOffset)
     {
      
         //Corner bottom left
         if (!rotate)
         {
-           Instantiate(wall, new Vector3(x, 0, z), Quaternion.Euler(0, 90, 0));
+           Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
              
         }
         else
         {
-            Instantiate(wall, new Vector3(x, 0, z), Quaternion.identity);
+            Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
         }
         
     }
 
-    private void placeGameFigure()
+    private void placeGameFigure(int xOffset, int yOffset)
     {
         int x = 0;
         int y = 0;
@@ -320,9 +318,9 @@ public class DisplayMaze :MonoBehaviour
              x = Random.Range(cMax - 5, cMax - 1);
              y = Random.Range(0, rMax - 1);
         }while(maze[x,y] == 1) ;
-        Debug.Log("Player instantiate at: " + x + " " + y + " " + maze[x, y]);
+        Debug.Log("Player instantiate at: " + (x +xOffset) + " " + (y +yOffset) + " " + maze[x, y]);
 
-        Instantiate(gameFigure, new Vector3(x, 0.5f, y), Quaternion.identity);
+        Instantiate(gameFigure, new Vector3(x + xOffset, 0.5f, y + yOffset), Quaternion.identity);
 
     }
 }

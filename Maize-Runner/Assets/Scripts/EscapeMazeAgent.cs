@@ -18,7 +18,7 @@ public class EscapeMazeAgent : Agent
         
         if (check)
         {
-            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            GameObject go = gameObject;
             Debug.Log(go.transform.position);
             Player = go.transform.position;
             transform.localPosition = Player;
@@ -37,7 +37,7 @@ public class EscapeMazeAgent : Agent
     {
         float moveX = vectorAction[0];
         float moveZ = vectorAction[1];
-        Debug.Log(vectorAction[0]);
+       // Debug.Log(vectorAction[0]);
         transform.position += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
     }
 
@@ -51,7 +51,7 @@ public class EscapeMazeAgent : Agent
     {
         actionsOut[0] = Input.GetAxisRaw("Horizontal");
         actionsOut[1] = Input.GetAxisRaw("Vertical");
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
+        //Debug.Log(Input.GetAxisRaw("Horizontal"));
     }
 
     private void OnTriggerEnter(Collider other)
