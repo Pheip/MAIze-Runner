@@ -11,6 +11,7 @@ public class MazeConstructor : MonoBehaviour
     public int columns;
     public bool easyMaze;
     public bool allSame;
+    public bool lvl1Maze;
 
     
     public int[,] data
@@ -107,6 +108,10 @@ public class MazeConstructor : MonoBehaviour
         if (easyMaze)
         {
             data = mazeDataGenerator.EasyMaze(sizeRows, sizeCols);
+        }
+        else if(lvl1Maze)
+        {
+            data = mazeDataGenerator.mazeLvlOne(sizeRows, sizeCols);
         }
         else
         {
