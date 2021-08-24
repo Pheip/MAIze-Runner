@@ -48,6 +48,18 @@ public class MazeDataGenerator
         return maze;
     }
 
+    public int[,] mazeLvlOne(int sizeRows, int sizeCols)
+    {
+        int[,] maze = EasyMaze(sizeRows, sizeCols);
+        
+        for (int i = 0; i <= 8; i++)
+        {
+            maze[Random.Range(2,sizeCols - 2), Random.Range( 2, sizeRows - 2)] = 1;
+        }
+        
+        return maze;
+    }
+
 
     public int[,] EasyMaze(int sizeRows, int sizeCols)
     {
