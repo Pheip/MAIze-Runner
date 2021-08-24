@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6413128825585638826}
   - component: {fileID: -4685674704433608769}
   - component: {fileID: 8746919829259872615}
+  - component: {fileID: 3378317530009337934}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -139,9 +140,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_Model: {fileID: 5022602860645237092, guid: dd3f9a2d66af9af44bfc6b76d18fa8f1, type: 3}
+  m_InferenceDevice: 3
+  m_BehaviorType: 1
   m_BehaviorName: EscapeMaze
   TeamId: 0
   m_UseChildSensors: 1
@@ -162,8 +163,10 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 4000
+  moveSpeed: 10
   targetTransform: {fileID: 6966706505589406848, guid: 49a5f24a081cbbc44bd23d76c2869723, type: 3}
+  winMaterial: {fileID: 2100000, guid: 2ca920d727cd5014ba9c27e396ac7b91, type: 2}
 --- !u!114 &-4685674704433608769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,17 +195,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
-  - Wall
   - Finish
-  m_RaysPerDirection: 11
+  - Wall
+  m_RaysPerDirection: 4
   m_MaxRayDegrees: 167.4
-  m_SphereCastRadius: 0.72
-  m_RayLength: 5
+  m_SphereCastRadius: 0.1
+  m_RayLength: 275
   m_RayLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967291
+    m_Bits: 51
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
+--- !u!114 &3378317530009337934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551053118622616492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0754135d3334d4993590bd6dbcaf1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -391,8 +391,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebug: 1
-  rows: 8
+  rows: 5
   columns: 5
+  easyMaze: 1
+  allSame: 0
 --- !u!114 &2067429764
 MonoBehaviour:
   m_ObjectHideFlags: 0

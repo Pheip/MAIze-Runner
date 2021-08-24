@@ -320,7 +320,11 @@ public class DisplayMaze :MonoBehaviour
         }while(maze[x,y] == 1) ;
         Debug.Log("Player instantiate at: " + (x +xOffset) + " " + (y +yOffset) + " " + maze[x, y]);
 
-        Instantiate(gameFigure, new Vector3(x + xOffset, 0.5f, y + yOffset), Quaternion.identity);
+        GameObject player = Instantiate(gameFigure, new Vector3(x + xOffset, 0.5f, y + yOffset), Quaternion.identity);
+        Player p = player.GetComponent<Player>();
+        p.maze = maze;
+        p.xOffset = xOffset;
+        p.yOffset = yOffset;
 
     }
 }
