@@ -9,7 +9,8 @@ public class MazeConstructor : MonoBehaviour
     private DisplayMaze displayMaze;
     public int rows;
     public int columns;
-
+    public bool easyMaze;
+    public bool allSame;
 
     
     public int[,] data
@@ -42,13 +43,21 @@ public class MazeConstructor : MonoBehaviour
             Debug.LogError("Better use odd numbers for maze size");
         }
 
+
         int xOffset = 0;
         int yOffset = 0;
+        if (allSame)
+        {
+            generateMazeLayout(sizeRows, sizeCols);
+        }
         for (int i = 0; i < columns; i++)
         {
             for (int j = 0; j < rows; j++)
             {
-                data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
+                if (!allSame)
+                {
+                    generateMazeLayout(sizeRows, sizeCols);
+                }
                 displayMaze.displayMaze(data, xOffset, yOffset);
                 yOffset += 20;
                 
@@ -91,5 +100,17 @@ public class MazeConstructor : MonoBehaviour
         }
 
         GUI.Label(new Rect(20, 20, 500, 500), msg);
+    }
+
+    private void generateMazeLayout(int sizeRows, int sizeCols)
+    {
+        if (easyMaze)
+        {
+            data = mazeDataGenerator.EasyMaze(sizeRows, sizeCols);
+        }
+        else
+        {
+            data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
+        }
     }
 }
