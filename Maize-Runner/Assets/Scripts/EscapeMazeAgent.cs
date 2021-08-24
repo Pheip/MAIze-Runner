@@ -33,6 +33,7 @@ public class EscapeMazeAgent : Agent
         
        
     }
+
     public override void OnActionReceived(float[] vectorAction)
     {
         float moveX = vectorAction[0];
@@ -45,6 +46,7 @@ public class EscapeMazeAgent : Agent
     {
         sensor.AddObservation(transform.position);
         sensor.AddObservation(targetTransform.position);
+       
     }
 
     public override void Heuristic(float[] actionsOut)
@@ -58,14 +60,14 @@ public class EscapeMazeAgent : Agent
     {
         if (other.TryGetComponent<Goal>(out Goal goal))
         {
-            SetReward(+1f);
+            SetReward(+10f);
             EndEpisode();
         }
 
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
             SetReward(-1f);
-            EndEpisode();
+            //EndEpisode();
         }
 
     }
