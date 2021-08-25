@@ -94,12 +94,11 @@ public class EscapeMazeAgent : Agent
             EndEpisode();
         }
 
-     /*   if (other.TryGetComponent<Wall>(out Wall wall))
+        if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            SetReward(-1f);
-            gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
-            EndEpisode();
-        }*/
+            AddReward(-0.2f);
+           // Debug.Log("HitWall");
+        }
 
     }
 }
