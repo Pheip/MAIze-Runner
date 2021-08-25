@@ -50,9 +50,9 @@ public class LearningInstance : MonoBehaviour
         } while (info.maze[x, y] == 1);
         Debug.Log("Player instantiate at: " + (x) + " " + (y ));
 
-        GameObject player = Instantiate(agent, new Vector3(x, 0.5f, y), Quaternion.identity);
+        GameObject player = Instantiate(agent, new Vector3(x, 2.5f, y), Quaternion.identity);
         player.transform.parent = gameObject.transform;
-        player.transform.localPosition = new Vector3(x, 0, y);
+        player.transform.localPosition = new Vector3(x, 0.5f, y);
    
     }
 }

@@ -353,7 +353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925048308}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 45, y: 30, z: -10}
+  m_LocalPosition: {x: 25, y: 30, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -388,8 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abc5bd7737525e4abb1bf81f0d4b16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowSizeInstances: 5
-  columnSizeInstances: 5
+  rowSizeInstances: 1
+  columnSizeInstances: 1
   rowSizeLabyrinth: 13
   columnsizeLabyrinth: 13
   easyMaze: 0
