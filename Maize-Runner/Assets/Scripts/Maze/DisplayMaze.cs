@@ -12,7 +12,7 @@ public class DisplayMaze :MonoBehaviour
     public GameObject endPoint;
     public GameObject exit;
     public GameObject wallLamp;
-    public GameObject gameFigure;
+
     private int rMax;
     private int cMax;
     private int[,] maze;
@@ -38,19 +38,23 @@ public class DisplayMaze :MonoBehaviour
             }
             log += "\n";
         }
-        placeGameFigure(xOffset, yOffset);
+      
     }
 
     private void createFloor(int x, int z, int xOffset, int yOffset)
     {
-        Instantiate(floor, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+        var go = Instantiate(floor, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+        go.transform.parent = gameObject.transform;
+        go.transform.localPosition = new Vector3(x, 0, z);
     }
 
     private void createWalls(int x, int z, int xOffset, int yOffset)
     {
         if(maze[0, z] == 0)
         {
-            Instantiate(exit, new Vector3(0 + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            var go = Instantiate(exit, new Vector3(0 + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(0, 0, z);
         }
         if (maze[x,z] == 1)
         {
@@ -67,11 +71,15 @@ public class DisplayMaze :MonoBehaviour
                                 // Generate the rest of the walls
                                 if (maze[x + 1, z] == 1 || maze[x - 1, z] == 1)
                                 {
-                                    Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+                                    var go = Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+                                    go.transform.parent = gameObject.transform;
+                                    go.transform.localPosition = new Vector3(x, 0, z);
                                 }
                                 else if (maze[x, z + 1] == 1 || maze[x, z - 1] == 1)
                                 {
-                                    Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+                                    var go = Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+                                    go.transform.parent = gameObject.transform;
+                                    go.transform.localPosition = new Vector3(x, 0, z);
                                 }
                             }
                         }
@@ -87,7 +95,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -96,7 +106,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 1)
         {
-            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            var go = Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -104,7 +116,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            var go = Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -112,7 +126,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 0)
         {
-            Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            var go = Instantiate(endPoint, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -122,7 +138,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 1 /*&& maze[x, z - 1] == 0*/)
         {
-            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -133,7 +151,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             /*maze[x - 1, z] == 0 &&*/ maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            var go = Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -143,7 +163,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && //maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            var go = Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -154,7 +176,9 @@ public class DisplayMaze :MonoBehaviour
         if (/*maze[x + 1, z] == 0 &&*/ maze[x, z + 1] == 1 &&
              maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            var go = Instantiate(tWall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -171,7 +195,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 0)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -180,7 +206,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 0 && maze[x, z - 1] == 1)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -188,7 +216,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 1 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 0)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
@@ -196,7 +226,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 0 && maze[x, z + 1] == 0 &&
             maze[x - 1, z] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -206,7 +238,9 @@ public class DisplayMaze :MonoBehaviour
         if (maze[x + 1, z] == 1 && maze[x - 1, z] == 1 &&
                   maze[x, z + 1] == 1 && maze[x, z - 1] == 1)
         {
-            Instantiate(intersection, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(intersection, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -267,28 +301,36 @@ public class DisplayMaze :MonoBehaviour
     {
         if (x == 0 && z == 0)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
         //Corner top left
         if (x == 0 && z == cMax)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
         //Corner top right
         if (x == rMax && z == cMax)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 180, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         else
         //Corner bottom right
         if (x == rMax && z == 0)
         {
-            Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            var go = Instantiate(corner, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 270, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
             return true;
         }
         return false;
@@ -299,32 +341,19 @@ public class DisplayMaze :MonoBehaviour
         //Corner bottom left
         if (!rotate)
         {
-           Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
-             
+            var go = Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
+
         }
         else
         {
-            Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            var go = Instantiate(wall, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.identity);
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(x, 0, z);
         }
         
     }
 
-    private void placeGameFigure(int xOffset, int yOffset)
-    {
-        int x = 0;
-        int y = 0;
-        do
-        {
-             x = Random.Range(cMax - 5, cMax - 1);
-             y = Random.Range(0, rMax - 1);
-        }while(maze[x,y] == 1) ;
-        Debug.Log("Player instantiate at: " + (x +xOffset) + " " + (y +yOffset) + " " + maze[x, y]);
-
-        GameObject player = Instantiate(gameFigure, new Vector3(x + xOffset, 0.5f, y + yOffset), Quaternion.identity);
-        Player p = player.GetComponent<Player>();
-        p.maze = maze;
-        p.xOffset = xOffset;
-        p.yOffset = yOffset;
-
-    }
+  
 }

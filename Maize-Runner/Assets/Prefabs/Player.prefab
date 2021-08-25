@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 6413128825585638826}
   - component: {fileID: -4685674704433608769}
   - component: {fileID: 8746919829259872615}
-  - component: {fileID: 3378317530009337934}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -164,7 +163,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 4000
-  moveSpeed: 10
+  moveSpeed: 5
   targetTransform: {fileID: 6966706505589406848, guid: 49a5f24a081cbbc44bd23d76c2869723, type: 3}
   winMaterial: {fileID: 2100000, guid: 2ca920d727cd5014ba9c27e396ac7b91, type: 2}
 --- !u!114 &-4685674704433608769
@@ -197,7 +196,7 @@ MonoBehaviour:
   m_DetectableTags:
   - Finish
   - Wall
-  m_RaysPerDirection: 4
+  m_RaysPerDirection: 6
   m_MaxRayDegrees: 167.4
   m_SphereCastRadius: 0.1
   m_RayLength: 275
@@ -209,15 +208,3 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!114 &3378317530009337934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551053118622616492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0754135d3334d4993590bd6dbcaf1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

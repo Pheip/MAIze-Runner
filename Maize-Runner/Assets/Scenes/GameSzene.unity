@@ -369,8 +369,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2067429765}
   - component: {fileID: 2067429764}
-  - component: {fileID: 2067429763}
-  - component: {fileID: 2067429766}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -378,23 +376,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2067429763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067429762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8812d8fcfa5d94ab101ae0b1a1c41b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showDebug: 1
-  rows: 5
-  columns: 5
-  easyMaze: 1
-  allSame: 0
 --- !u!114 &2067429764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,8 +388,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abc5bd7737525e4abb1bf81f0d4b16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowSize: 13
-  columnSize: 15
+  rowSizeInstances: 5
+  columnSizeInstances: 5
+  rowSizeLabyrinth: 13
+  columnsizeLabyrinth: 13
+  easyMaze: 0
+  lvlOneMaze: 0
+  instance: {fileID: 6578950822202482684, guid: 5397b19cf0b62204b87cce8b0ce047a1, type: 3}
 --- !u!4 &2067429765
 Transform:
   m_ObjectHideFlags: 0
@@ -423,24 +409,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2067429766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067429762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ad19d0f65b05644a1ccd81b93b8e9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floor: {fileID: 9100508158649072905, guid: e348e7143b6247b488737e4be26fb038, type: 3}
-  wall: {fileID: 6229247520373792897, guid: 3ad7a1cffb2556547a8b7e60fd320431, type: 3}
-  corner: {fileID: 1810489169034572580, guid: 2c189b99dba93044087a791c8b843698, type: 3}
-  intersection: {fileID: 5495961213640625528, guid: a728b5d5a30a01d46b867b478b531f16, type: 3}
-  tWall: {fileID: 6744027569320412502, guid: dc818269dfb43fa4db54ce00951119ce, type: 3}
-  endPoint: {fileID: 5296640518897159756, guid: 44b22585856c4554991c825eb9025ff9, type: 3}
-  exit: {fileID: 4463566038210007903, guid: 49a5f24a081cbbc44bd23d76c2869723, type: 3}
-  wallLamp: {fileID: 2089684518873972768, guid: 177cc8d17c4c8f24f86c33d026176a86, type: 3}
-  gameFigure: {fileID: 3551053118622616492, guid: 59824b8662373534799768cd788237a0, type: 3}

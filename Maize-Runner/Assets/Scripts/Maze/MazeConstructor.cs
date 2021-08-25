@@ -7,12 +7,7 @@ public class MazeConstructor : MonoBehaviour
     public bool showDebug;
     private MazeDataGenerator mazeDataGenerator;
     private DisplayMaze displayMaze;
-    public int rows;
-    public int columns;
-    public bool easyMaze;
     public bool allSame;
-    public bool lvl1Maze;
-
     
     public int[,] data
     {
@@ -31,42 +26,24 @@ public class MazeConstructor : MonoBehaviour
 
         mazeDataGenerator = new MazeDataGenerator();
         displayMaze = GetComponent<DisplayMaze>();
+        
+
     }
     void Start()
     {
-        
+            
     }
 
-   public void GenerateNewMaze(int sizeRows, int sizeCols)
+   public void GenerateNewMaze(int rows, int columns)
     {
-        if (sizeRows % 2 == 0 && sizeCols % 2 == 0)
+        if (rows % 2 == 0 && columns % 2 == 0)
         {
             Debug.LogError("Better use odd numbers for maze size");
         }
-
-
         int xOffset = 0;
         int yOffset = 0;
-        if (allSame)
-        {
-            generateMazeLayout(sizeRows, sizeCols);
-        }
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                if (!allSame)
-                {
-                    generateMazeLayout(sizeRows, sizeCols);
-                }
-                displayMaze.displayMaze(data, xOffset, yOffset);
-                yOffset += 20;
-                
-            }
-            yOffset = 0;
-            xOffset += 20;
-        }
-        
+        generateMazeLayout(rows, columns);
+        displayMaze.displayMaze(data, xOffset, yOffset);
 
     }
 
@@ -105,11 +82,12 @@ public class MazeConstructor : MonoBehaviour
 
     private void generateMazeLayout(int sizeRows, int sizeCols)
     {
-        if (easyMaze)
+        InstanceInformation info = this.transform.parent.GetComponent<InstanceInformation>();
+        if (info.easyMaze)
         {
             data = mazeDataGenerator.EasyMaze(sizeRows, sizeCols);
         }
-        else if(lvl1Maze)
+        else if(info.lvlOneMaze)
         {
             data = mazeDataGenerator.mazeLvlOne(sizeRows, sizeCols);
         }
@@ -117,5 +95,7 @@ public class MazeConstructor : MonoBehaviour
         {
             data = mazeDataGenerator.FromDimensions(sizeRows, sizeCols);
         }
+        
+        info.maze = data;
     }
 }
