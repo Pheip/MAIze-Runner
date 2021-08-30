@@ -1,5 +1,9 @@
 # MAIze-Runner
 
-Algorithm fpr maze Generation: https://www.raywenderlich.com/82-procedural-generation-of-mazes-with-unity#toc-anchor-005
-TutorialML Agent: https://www.youtube.com/watch?v=zPFU30tbyKs
-Tutorial Kart AI ;https://www.youtube.com/watch?v=n5rY9ffqryU
+Projekt des Modules Intelligente Systeme,
+Hochschule Düsseldorf, University of Applied Sciences 
+Fachbereich Medien, M.Sc. Medieninformatik
+
+Gruppenid: 15
+
+Philipp Heise 701768
