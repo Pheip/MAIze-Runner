@@ -52,6 +52,8 @@ MonoBehaviour:
   endPoint: {fileID: 5296640518897159756, guid: 44b22585856c4554991c825eb9025ff9, type: 3}
   exit: {fileID: 4463566038210007903, guid: 49a5f24a081cbbc44bd23d76c2869723, type: 3}
   wallLamp: {fileID: 2089684518873972768, guid: 177cc8d17c4c8f24f86c33d026176a86, type: 3}
+  reward: {fileID: 3519014655963419423, guid: e151ca9cd8c9f9f42a9ce4125c2c24a6, type: 3}
+  goalCollider: {fileID: 221765485765222037, guid: 6501ea4fd07d54e49b398de1bfe95e44, type: 3}
 --- !u!114 &1706775637197893915
 MonoBehaviour:
   m_ObjectHideFlags: 0

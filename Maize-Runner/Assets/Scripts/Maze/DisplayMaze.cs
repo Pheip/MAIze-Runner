@@ -12,7 +12,8 @@ public class DisplayMaze :MonoBehaviour
     public GameObject endPoint;
     public GameObject exit;
     public GameObject wallLamp;
-
+    public GameObject reward;
+    public GameObject goalCollider;
     private int rMax;
     private int cMax;
     private int[,] maze;
@@ -50,11 +51,26 @@ public class DisplayMaze :MonoBehaviour
 
     private void createWalls(int x, int z, int xOffset, int yOffset)
     {
-        if(maze[0, z] == 0)
+        if(maze[0, z] == 0 )
         {
             var go = Instantiate(exit, new Vector3(0 + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
             go.transform.parent = gameObject.transform;
             go.transform.localPosition = new Vector3(0, 0, z);
+
+            var go2 = Instantiate(goalCollider, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go2.transform.parent = gameObject.transform;
+            go2.transform.localPosition = new Vector3(0+ 1, 0.4f, z);
+
+        }
+        if (maze[cMax, z] == 0)
+        {
+            var go = Instantiate(exit, new Vector3(cMax + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go.transform.parent = gameObject.transform;
+            go.transform.localPosition = new Vector3(cMax, 0, z);
+
+            var go2 = Instantiate(goalCollider, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go2.transform.parent = gameObject.transform;
+            go2.transform.localPosition = new Vector3(cMax - 1, 0.4f, z);
         }
         if (maze[x,z] == 1)
         {
@@ -86,6 +102,11 @@ public class DisplayMaze :MonoBehaviour
                     }
                 }
             }
+        } else if (maze[x, z] == 0 && (x != 0 || x != cMax ))
+        {
+            var go2 = Instantiate(reward, new Vector3(x + xOffset, 0, z + yOffset), Quaternion.Euler(0, 90, 0));
+            go2.transform.parent = gameObject.transform;
+            go2.transform.localPosition = new Vector3(x, 0.4f, z);
         }
     }
 

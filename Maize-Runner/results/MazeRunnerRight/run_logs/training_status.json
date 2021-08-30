@@ -1,0 +1,65 @@
+{
+    "EscapeMaze": {
+        "checkpoints": [
+            {
+                "steps": 19999956,
+                "file_path": "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-19999956.onnx",
+                "reward": -6.460950183868408,
+                "creation_time": 1630041510.7596097,
+                "auxillary_file_paths": [
+                    "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-19999956.pt"
+                ]
+            },
+            {
+                "steps": 20999941,
+                "file_path": "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-20999941.onnx",
+                "reward": -5.471424920632776,
+                "creation_time": 1630043003.7226977,
+                "auxillary_file_paths": [
+                    "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-20999941.pt"
+                ]
+            },
+            {
+                "steps": 21999995,
+                "file_path": "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-21999995.onnx",
+                "reward": -6.846575175970793,
+                "creation_time": 1630044542.6419394,
+                "auxillary_file_paths": [
+                    "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-21999995.pt"
+                ]
+            },
+            {
+                "steps": 22999956,
+                "file_path": "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-22999956.onnx",
+                "reward": -5.819648809126906,
+                "creation_time": 1630046110.5338507,
+                "auxillary_file_paths": [
+                    "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-22999956.pt"
+                ]
+            },
+            {
+                "steps": 23007598,
+                "file_path": "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-23007598.onnx",
+                "reward": -5.720387657359242,
+                "creation_time": 1630046119.730802,
+                "auxillary_file_paths": [
+                    "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-23007598.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 23007598,
+            "file_path": "results\\MazeRunnerRight\\EscapeMaze.onnx",
+            "reward": -5.720387657359242,
+            "creation_time": 1630046119.730802,
+            "auxillary_file_paths": [
+                "results\\MazeRunnerRight\\EscapeMaze\\EscapeMaze-23007598.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

@@ -40,9 +40,15 @@ public class MazeDataGenerator
                 }
             }
         }
-
+        
         int exit = Random.Range(1, rMax - 2);
-        maze[0, exit] = 0;
+        Debug.Log(Random.Range(1, 3));
+        if (Random.Range(1, 100) % 2 == 0) {
+
+            maze[0, exit] = 0;
+        } else {
+            maze[cMax, exit] = 0;
+        }
 
 
         return maze;
@@ -52,9 +58,9 @@ public class MazeDataGenerator
     {
         int[,] maze = EasyMaze(sizeRows, sizeCols);
         
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i <= 10; i++)
         {
-            maze[Random.Range(2,sizeCols - 2), Random.Range( 2, sizeRows - 2)] = 1;
+            maze[Random.Range(2,sizeRows - 2), Random.Range( 2, sizeCols - 2)] = 1;
         }
         
         return maze;
@@ -85,7 +91,16 @@ public class MazeDataGenerator
         }
 
         int exit = Random.Range(1, rMax - 2);
-        maze[0, exit] = 0;
+        Debug.Log(Random.Range(1, 3));
+        if (Random.Range(1, 100) % 2 == 0)
+        {
+
+            maze[0, exit] = 0;
+        }
+        else
+        {
+            maze[cMax, exit] = 0;
+        }
 
 
         return maze;

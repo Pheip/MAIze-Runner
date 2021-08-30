@@ -1,0 +1,65 @@
+{
+    "EscapeMaze": {
+        "checkpoints": [
+            {
+                "steps": 36999971,
+                "file_path": "results\\TestWalls3\\EscapeMaze\\EscapeMaze-36999971.onnx",
+                "reward": -737.9580262796378,
+                "creation_time": 1629956644.0363557,
+                "auxillary_file_paths": [
+                    "results\\TestWalls3\\EscapeMaze\\EscapeMaze-36999971.pt"
+                ]
+            },
+            {
+                "steps": 37999986,
+                "file_path": "results\\TestWalls3\\EscapeMaze\\EscapeMaze-37999986.onnx",
+                "reward": -821.670001355807,
+                "creation_time": 1629958013.7532752,
+                "auxillary_file_paths": [
+                    "results\\TestWalls3\\EscapeMaze\\EscapeMaze-37999986.pt"
+                ]
+            },
+            {
+                "steps": 38999977,
+                "file_path": "results\\TestWalls3\\EscapeMaze\\EscapeMaze-38999977.onnx",
+                "reward": -782.4204565178264,
+                "creation_time": 1629959391.4876225,
+                "auxillary_file_paths": [
+                    "results\\TestWalls3\\EscapeMaze\\EscapeMaze-38999977.pt"
+                ]
+            },
+            {
+                "steps": 39999976,
+                "file_path": "results\\TestWalls3\\EscapeMaze\\EscapeMaze-39999976.onnx",
+                "reward": -748.309090903311,
+                "creation_time": 1629960796.598971,
+                "auxillary_file_paths": [
+                    "results\\TestWalls3\\EscapeMaze\\EscapeMaze-39999976.pt"
+                ]
+            },
+            {
+                "steps": 40000040,
+                "file_path": "results\\TestWalls3\\EscapeMaze\\EscapeMaze-40000040.onnx",
+                "reward": -748.309090903311,
+                "creation_time": 1629960796.6489792,
+                "auxillary_file_paths": [
+                    "results\\TestWalls3\\EscapeMaze\\EscapeMaze-40000040.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 40000040,
+            "file_path": "results\\TestWalls3\\EscapeMaze.onnx",
+            "reward": -748.309090903311,
+            "creation_time": 1629960796.6489792,
+            "auxillary_file_paths": [
+                "results\\TestWalls3\\EscapeMaze\\EscapeMaze-40000040.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}
