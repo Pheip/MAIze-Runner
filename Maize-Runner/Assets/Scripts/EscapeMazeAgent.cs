@@ -13,7 +13,8 @@ public class EscapeMazeAgent : Agent
     [SerializeField] private Transform targetTransform;
     public Material winMaterial;
     Material defaultMaterial;
-    
+    bool hitWall;
+
     public override void OnEpisodeBegin()
     {
         
@@ -26,6 +27,7 @@ public class EscapeMazeAgent : Agent
             transform.localPosition = PlayerPosition;  
             check = false;
             defaultMaterial = gameObject.GetComponent<MeshRenderer>().material;
+            Debug.Log(targetTransform.localPosition + " LOKAL");
         }
       
         else
@@ -35,8 +37,7 @@ public class EscapeMazeAgent : Agent
             
             transform.localPosition = placeGameFigure();
             
-        }
-        
+        }       
        
     }
 
@@ -63,24 +64,32 @@ public class EscapeMazeAgent : Agent
         var input = vectorAction.ContinuousActions;
         float moveX = input[0];
         float moveZ = input[1];
-       // Debug.Log(vectorAction[0]);
-        transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
-        AddReward(-.1f);
+      
+        transform.localPosition += new Vector3(moveX, 0.0f, moveZ) * Time.deltaTime * moveSpeed;
+        AddReward(-0.001f);     
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(targetTransform.localPosition);
-       
+        InstanceInformation info = this.transform.parent.GetComponent<InstanceInformation>();
+        float normX = transform.localPosition.x / info.maze.GetUpperBound(1);
+        float normZ = transform.localPosition.z / info.maze.GetUpperBound(0);
+        sensor.AddObservation(new Vector3(normX,0,normZ));
+        sensor.AddObservation(hitWall);
+
+        //sensor.AddObservation(distance);
+
+
     }
  
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        var action = actionsOut.ContinuousActions;
-        action[0] = Input.GetAxisRaw("Horizontal");
-        action[1] = Input.GetAxisRaw("Vertical");
-        //Debug.Log(Input.GetAxisRaw("Horizontal"));
+         var action = actionsOut.ContinuousActions;
+         action[0] = Input.GetAxisRaw("Horizontal");
+         action[1] = Input.GetAxisRaw("Vertical");
+         //Debug.Log(Input.GetAxisRaw("Horizontal"));
+
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,7 +97,7 @@ public class EscapeMazeAgent : Agent
         if (other.TryGetComponent<Goal>(out Goal goal))
         {
             
-           SetReward(+10f);
+            AddReward(+1f);
             Debug.Log("Finish");
             gameObject.GetComponent<MeshRenderer>().material = winMaterial;
             EndEpisode();
@@ -96,9 +105,32 @@ public class EscapeMazeAgent : Agent
 
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            AddReward(-0.2f);
-           // Debug.Log("HitWall");
+            AddReward(-0.001f);
+           //Debug.Log("HitWall");
+        }
+        if (other.TryGetComponent<Reward>(out Reward reward))
+        {
+            AddReward(+0.001f);
+            Destroy(other.gameObject);
         }
 
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            hitWall = true;
+            AddReward(-0.001f);
+            //Debug.Log("LStay");
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Wall"))
+        {
+            hitWall = false;
+            //Debug.Log("Left");
+        }
+    }
+
 }

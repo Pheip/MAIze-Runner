@@ -1,0 +1,47 @@
+{
+    "EscapeMaze": {
+        "checkpoints": [
+            {
+                "steps": 999982,
+                "file_path": "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-999982.onnx",
+                "reward": -226.88900051545352,
+                "creation_time": 1629981197.8708673,
+                "auxillary_file_paths": [
+                    "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-999982.pt"
+                ]
+            },
+            {
+                "steps": 1999970,
+                "file_path": "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-1999970.onnx",
+                "reward": -174.1686669134972,
+                "creation_time": 1629983325.5736206,
+                "auxillary_file_paths": [
+                    "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-1999970.pt"
+                ]
+            },
+            {
+                "steps": 2071220,
+                "file_path": "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-2071220.onnx",
+                "reward": -179.59501388533548,
+                "creation_time": 1629983483.726947,
+                "auxillary_file_paths": [
+                    "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-2071220.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2071220,
+            "file_path": "results\\TestRightExit6\\EscapeMaze.onnx",
+            "reward": -179.59501388533548,
+            "creation_time": 1629983483.726947,
+            "auxillary_file_paths": [
+                "results\\TestRightExit6\\EscapeMaze\\EscapeMaze-2071220.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Char
   - Wall
+  - Reward
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - 
   - Wall
-  - 
-  - 
+  - Finish
+  - Reward
   - 
   - 
   - 

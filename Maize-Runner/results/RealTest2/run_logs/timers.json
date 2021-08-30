@@ -1,0 +1,82 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1629995132",
+        "python_version": "3.6.8 (tags/v3.6.8:3c6b436a57, Dec 24 2018, 00:16:47) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "E:\\UnityProjects\\MAIze-Runner\\Maize-Runner\\venv\\Scripts\\mlagents-learn config\\EscapeMaze_config.yaml --run-id=RealTest2 --resume",
+        "mlagents_version": "0.27.0",
+        "mlagents_envs_version": "0.27.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.0+cu110",
+        "numpy_version": "1.19.5",
+        "end_time_seconds": "1629995141"
+    },
+    "total": 9.6220888,
+    "count": 1,
+    "self": 0.008612599999999304,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1366028,
+            "count": 1,
+            "self": 0.1366028
+        },
+        "TrainerController.start_learning": {
+            "total": 9.4768734,
+            "count": 1,
+            "self": 0.00019790000000163843,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 9.392660699999999,
+                    "count": 1,
+                    "self": 9.392660699999999
+                },
+                "TrainerController.advance": {
+                    "total": 0.059114000000001,
+                    "count": 1,
+                    "self": 1.100000000064938e-05,
+                    "children": {
+                        "env_step": {
+                            "total": 0.05910300000000035,
+                            "count": 1,
+                            "self": 0.000369300000000905,
+                            "children": {
+                                "SubprocessEnvManager._take_step": {
+                                    "total": 0.058733699999999445,
+                                    "count": 1,
+                                    "self": 3.729999999890765e-05,
+                                    "children": {
+                                        "TorchPolicy.evaluate": {
+                                            "total": 0.05869640000000054,
+                                            "count": 1,
+                                            "self": 0.0002881999999999607,
+                                            "children": {
+                                                "TorchPolicy.sample_actions": {
+                                                    "total": 0.058408200000000576,
+                                                    "count": 1,
+                                                    "self": 0.058408200000000576
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "TrainerController._save_models": {
+                    "total": 0.02490079999999928,
+                    "count": 1,
+                    "self": 2.650000000059549e-05,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.024874299999998684,
+                            "count": 1,
+                            "self": 0.024874299999998684
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
